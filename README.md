@@ -1,0 +1,1 @@
+suka suka kalian mau pakai buat apaan. dosa ditanggung masing-masing
