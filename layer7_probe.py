@@ -29,7 +29,7 @@ def simulate_attack_on_waf():
     
     print("[!] WAF Aktif. Menerima serangan asimetris...")
     
-    for i in range(1, 31):
+    for i in range(1, 1001):
         status = target_waf.process_request()
         if status == 200:
             print(f"Request {i}: [200 OK] -> Tembus")
